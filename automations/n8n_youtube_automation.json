@@ -1,0 +1,53 @@
+{
+  "name": "OmniFlow: Upload to YouTube",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "upload",
+        "title": "{{ $json.videoTitle }}",
+        "description": "{{ $json.videoDescription }}",
+        "tags": "{{ $json.tags || 'AI, YouTube, Automation' }}",
+        "categoryId": "28",
+        "privacyStatus": "public",
+        "videoFile": "={{ $binary.videoFile }}",
+        "autoGenerate": true
+      },
+      "name": "YouTube Upload",
+      "type": "n8n-nodes-base.youtube",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "resource": "video",
+        "title": "{{ $json.videoTitle }}",
+        "description": "{{ $json.videoDescription }}"
+      },
+      "name": "Schedule Post",
+      "type": "n8n-nodes-base.spreadsheetTrigger",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "YouTube Upload": {
+      "main": [
+        [
+          {
+            "node": "Schedule Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

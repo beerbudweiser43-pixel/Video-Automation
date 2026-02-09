@@ -1,0 +1,49 @@
+{
+  "name": "OmniFlow: YouTube Auto-Publish via Make",
+  "description": "Automatically upload and publish videos to YouTube with custom metadata.",
+  "modules": [
+    {
+      "id": 1,
+      "module": "builtin:BasicTrigger",
+      "parameters": {
+        "label": "Trigger on video ready"
+      }
+    },
+    {
+      "id": 2,
+      "module": "youtube:UploadVideo",
+      "parameters": {
+        "title": "{{ 1.videoTitle }}",
+        "description": "{{ 1.videoDescription }}",
+        "videoFile": "{{ 1.videoFile }}",
+        "categoryId": "28",
+        "privacyStatus": "public",
+        "tags": "{{ 1.tags }}"
+      }
+    },
+    {
+      "id": 3,
+      "module": "google-sheets:AppendRow",
+      "parameters": {
+        "spreadsheetId": "{{ env.SHEET_ID }}",
+        "range": "Analytics!A:Z",
+        "values": [
+          "{{ 2.videoId }}",
+          "{{ 2.publishedAt }}",
+          "{{ 1.videoTitle }}",
+          "{{ env.CHANNEL_NAME }}"
+        ]
+      }
+    }
+  ],
+  "connections": [
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ]
+  ]
+}
