@@ -1,76 +1,25 @@
-# Python
+# Python standard ignore patterns
+
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual environments
-venv/
-ENV/
-env/
-.venv
+*.pyc
 .env
-.env.local
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+venv/
 .DS_Store
 
-# Streamlit
-.streamlit/
-*.pickle
+# Byte-compiled / optimized / DLL files
+*.py[cod]
 
-# ComfyUI
-models/checkpoints/*.safetensors
-models/checkpoints/*.ckpt
-models/checkpoints/*.pth
-models/vae/*.safetensors
-models/loras/*.safetensors
-outputs/
-temp/
-logs/
+# C Extensions
+*.so
 
-# Large files
-*.mp4
-*.avi
-*.mov
-*.mkv
-*.wav
-*.flac
-*.mp3
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Miscellaneous  
-.cache/
-*.log
-node_modules/
-dist/
+# Distribution / packaging
+.Python
 build/
-*.zip
+dist/
+.egg-info/
+
+# Pytest
+.cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
